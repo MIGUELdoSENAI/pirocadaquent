@@ -72,6 +72,16 @@
             }
         }
     }
+
+        // Calcular taxa
+        if ($operacao == "taxa") {
+            if (!empty($juros) && !empty($capital) && !empty($prazo) && $capital > 0 && $prazo > 0) {
+                $taxa = ($juros / ($capital * $prazo)) * 100;
+                echo "<h2>A Taxa é: <strong>X = " . number_format($taxa, 2, ',', '.') . " %</strong></h2>";
+            } else {
+                echo "<p style='color:red;'>Informe Juros, Capital e Prazo válidos para calcular a Taxa.</p>";
+            }
+        }
     ?>
 </body>
 </html>
