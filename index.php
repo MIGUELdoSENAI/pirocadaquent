@@ -34,5 +34,25 @@
 
         <button type="submit">Enviar</button>
     </form>
+
+    <?php
+    if (isset($_GET['operacao'])) {
+        $operacao = $_GET['operacao'];
+        $juros = $_GET['juros'] ?? null;
+        $capital = $_GET['capital'] ?? null;
+        $prazo = $_GET['prazo'] ?? null;
+        $taxa = $_GET['taxa'] ?? null;
+
+        // Calcular Capital
+        if ($operacao == "capital") {
+            if (!empty($juros) && !empty($taxa) && !empty($prazo) && $taxa > 0 && $prazo > 0) {
+                $capital = $juros / (($taxa / 100) * $prazo);
+                echo "<h2>O Capital é: <strong>X = " . number_format($capital, 2, ',', '.') . "</strong></h2>";
+            } else {
+                echo "<p style='color:red;'>Informe Juros, Taxa e Prazo válidos para calcular o Capital.</p>";
+            }
+        }
+    }
+    ?>
 </body>
 </html>
