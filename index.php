@@ -34,5 +34,55 @@
 
         <button type="submit">Enviar</button>
     </form>
+
+    <?php
+    if (isset($_GET['operacao'])) {
+        $operacao = $_GET['operacao'];
+        $juros = $_GET['juros'] ?? null;
+        $capital = $_GET['capital'] ?? null;
+        $prazo = $_GET['prazo'] ?? null;
+        $taxa = $_GET['taxa'] ?? null;
+
+        // Calcular Juros
+        if ($operacao == "juros") {
+            if (!empty($capital) && !empty($taxa) && !empty($prazo)) {
+                $juros = $capital * ($taxa / 100) * $prazo;
+                echo "<h2>O Juros é: <strong>X = " . number_format($juros, 2, ',', '.') . "</strong></h2>";
+            } else {
+                echo "<p style='color:red;'>Informe Capital, Taxa e Prazo válidos para calcular o Juros.</p>";
+            }
+        }
+
+        // Calcular Capital
+        if ($operacao == "capital") {
+            if (!empty($juros) && !empty($taxa) && !empty($prazo) && $taxa > 0 && $prazo > 0) {
+                $capital = $juros / (($taxa / 100) * $prazo);
+                echo "<h2>O Capital é: <strong>X = " . number_format($capital, 2, ',', '.') . "</strong></h2>";
+            } else {
+                echo "<p style='color:red;'>Informe Juros, Taxa e Prazo válidos para calcular o Capital.</p>";
+            }
+        }
+
+        // Calcular Prazo
+        if ($operacao == "prazo") {
+            if (!empty($juros) && !empty($capital) && !empty($taxa) && $taxa > 0) {
+                $prazo = $juros / ($capital * ($taxa / 100));
+                echo "<h2>O Prazo é: <strong>X = " . number_format($prazo, 2, ',', '.') . " meses</strong></h2>";
+            } else {
+                echo "<p style='color:red;'>Informe Juros, Capital e Taxa válidos para calcular o Prazo.</p>";
+            }
+        }
+    }
+
+        // Calcular taxa
+        if ($operacao == "taxa") {
+            if (!empty($juros) && !empty($capital) && !empty($prazo) && $capital > 0 && $prazo > 0) {
+                $taxa = ($juros / ($capital * $prazo)) * 100;
+                echo "<h2>A Taxa é: <strong>X = " . number_format($taxa, 2, ',', '.') . " %</strong></h2>";
+            } else {
+                echo "<p style='color:red;'>Informe Juros, Capital e Prazo válidos para calcular a Taxa.</p>";
+            }
+        }
+    ?>
 </body>
 </html>
