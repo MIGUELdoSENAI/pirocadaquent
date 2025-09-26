@@ -32,7 +32,7 @@
             <option value="taxa">Calcular Taxa</option>
         </select><br><br>
 
-        <button type="submit">Enviar</button>
+        <button type="submit">Enviar?</button>
     </form>
 
     <?php
