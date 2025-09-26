@@ -29,6 +29,7 @@
             <option value="juros">Calcular Juros</option>
             <option value="capital">Calcular Capital</option>
             <option value="prazo">Calcular Prazo</option>
+            <option value="taxa">Calcular Taxa</option>
         </select><br><br>
 
         <button type="submit">Enviar</button>
